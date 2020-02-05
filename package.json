@@ -1,0 +1,8 @@
+{
+  "name": "Storyteller2.0",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/CristiTone/Storyteller2.0.git",
+  "author": "Cristi Tone",
+  "license": "MIT"
+}
