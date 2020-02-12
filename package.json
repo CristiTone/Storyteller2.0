@@ -4,5 +4,26 @@
   "main": "server.js",
   "repository": "https://github.com/CristiTone/Storyteller2.0.git",
   "author": "Cristi Tone",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "yarn start --prefix client",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "client": "file:client",
+    "config": "^3.2.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.3.1",
+    "gravatar": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.10",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
 }
