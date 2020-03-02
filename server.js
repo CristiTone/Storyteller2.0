@@ -11,10 +11,10 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // Define Routes
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/posts', require('./routes/api/posts'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/user', require('./routes/user'));
+app.use('/api/profile', require('./routes/profile'));
+app.use('/api/gallery', require('./routes/gallery'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
