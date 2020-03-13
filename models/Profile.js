@@ -3,20 +3,22 @@ const mongoose = require('mongoose');
 const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'users'
+  },
+  name: {
+    type: String
+  },
+  avatar: {
+    type: String
   },
   likedstories: [
     {
       story: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'stories'
       }
     }
-  ],
-  date: {
-    type: Date,
-    default: Date.now
-  }
+  ]
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

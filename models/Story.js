@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
-const PostSchema = new Schema({
+const StorySchema = new mongoose.Schema({
   author: {
     type: String
   },
   name: {
     type: String
   },
-  avatar: {
+  image_url: {
     type: String
   },
-  playingurl: {
+  playing_url: {
     type: String
   },
   genre: {
@@ -26,4 +26,4 @@ const PostSchema = new Schema({
   ]
 });
 
-module.exports = Post = mongoose.model('post', PostSchema);
+module.exports = Story = mongoose.model('story', StorySchema);
