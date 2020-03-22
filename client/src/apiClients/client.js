@@ -1,8 +1,8 @@
 function client(endpoint, { body, ...customConfig } = {}) {
-  const token = window.localStorage.getItem('_token_');
+  const token = localStorage.getItem('_token_');
   const headers = {};
   if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    headers['x-auth-token'] = token;
   }
 
   // fetch can auto-fill the FormData content type
@@ -26,11 +26,7 @@ function client(endpoint, { body, ...customConfig } = {}) {
   return request(`${process.env.REACT_APP_API_URL}/${endpoint}`, config);
 }
 
-/**
- * Parses the JSON returned by a network request
- * @param  {object} response A response from a network request
- * @return {object}          The parsed JSON, status from the response
- */
+// Parses the JSON returned by a network request
 function parseJSON(response) {
   return new Promise(resolve =>
     response
@@ -48,12 +44,7 @@ function parseJSON(response) {
   );
 }
 
-/**
- * Requests a URL, returning a promise
- * @param  {string} url       The URL we want to request
- * @param  {object} [options] The options we want to pass to "fetch"
- * @return {Promise}           The request promise
- */
+// Requests a URL, returning a promise
 function request(url, options) {
   return new Promise((resolve, reject) => {
     fetch(url, options)
