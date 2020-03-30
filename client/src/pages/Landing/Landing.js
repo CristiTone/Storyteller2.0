@@ -1,12 +1,10 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Grid, Typography, Button } from '@material-ui/core';
-import Navbar from '../../components/Navbar';
 
-const Landing = props => {
+const Landing = ({ history }) => {
   return (
     <>
-      <Navbar />
       <div className='landing'>
         <Grid
           container
@@ -28,7 +26,11 @@ const Landing = props => {
             </Typography>
           </Grid>
           <Grid item>
-            <Button variant='contained' color='secondary'>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={() => history.push('/sign-up')}
+            >
               Sign up for free
             </Button>
           </Grid>
@@ -38,6 +40,8 @@ const Landing = props => {
   );
 };
 
-// Landing.propTypes = {};
+Landing.propTypes = {
+  history: PropTypes.object.isRequired
+};
 
 export default Landing;

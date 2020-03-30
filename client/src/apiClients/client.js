@@ -26,24 +26,6 @@ function client(endpoint, { body, ...customConfig } = {}) {
   return request(`${process.env.REACT_APP_API_URL}/${endpoint}`, config);
 }
 
-// Parses the JSON returned by a network request
-function parseJSON(response) {
-  return new Promise(resolve =>
-    response
-      .text()
-      .then(text => {
-        return text ? JSON.parse(text) : {};
-      })
-      .then(json => {
-        resolve({
-          status: response.status,
-          ok: response.ok,
-          json
-        });
-      })
-  );
-}
-
 // Requests a URL, returning a promise
 function request(url, options) {
   return new Promise((resolve, reject) => {
@@ -63,6 +45,24 @@ function request(url, options) {
         })
       );
   });
+}
+
+// Parses the JSON returned by a network request
+function parseJSON(response) {
+  return new Promise(resolve =>
+    response
+      .text()
+      .then(text => {
+        return text ? JSON.parse(text) : {};
+      })
+      .then(json => {
+        resolve({
+          status: response.status,
+          ok: response.ok,
+          json
+        });
+      })
+  );
 }
 
 export default client;

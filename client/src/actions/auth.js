@@ -1,4 +1,4 @@
-import axios from 'axios';
+import * as userClient from '../apiClients/userClient';
 import { setAlert } from './alert';
 import {
   REGISTER_SUCCESS,
@@ -14,11 +14,11 @@ import {
 // Load User
 export const loadUser = () => async dispatch => {
   try {
-    const res = await axios.get('/api/auth');
+    const res = await userClient.getUser();
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: res
     });
   } catch (err) {
     dispatch({
@@ -28,21 +28,13 @@ export const loadUser = () => async dispatch => {
 };
 
 // Register User
-export const register = ({ name, email, password }) => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
-  const body = JSON.stringify({ name, email, password });
-
+export const register = account => async dispatch => {
   try {
-    const res = await axios.post('/api/users', body, config);
+    const res = await userClient.registerUser(account);
 
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data
+      payload: res
     });
   } catch (err) {
     const errors = err.response.data.errors;
@@ -58,21 +50,13 @@ export const register = ({ name, email, password }) => async dispatch => {
 };
 
 // Login User
-export const login = (email, password) => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
-  const body = JSON.stringify({ email, password });
-
+export const login = account => async dispatch => {
   try {
-    const res = await axios.post('/api/auth', body, config);
+    const res = await userClient.loginUser(account);
 
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.data
+      payload: res
     });
 
     dispatch(loadUser());

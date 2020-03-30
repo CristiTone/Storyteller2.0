@@ -1,13 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Landing from '../pages/Landing';
-// import SignUp from '../pages/SignUp';
+import PrivateRoute from './PrivateRoute';
+import SignUp from '../pages/SignUp';
+import SignIn from '../pages/SignIn';
+import Gallery from '../pages/Gallery';
 
 const Routes = () => {
   return (
     <Switch>
-      <Route path='/' component={Landing} />
-      {/* <Route path='/register' component={SignUp} /> */}
+      <Route path='/sign-up' component={SignUp} />
+      <Route path='/sign-in' component={SignIn} />
+      <PrivateRoute exact path='/gallery' component={Gallery} />
     </Switch>
   );
 };
