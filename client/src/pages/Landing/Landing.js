@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid, Typography, Button, Box } from '@material-ui/core';
+// import { makeStyles } from '@material-ui/core/styles';
+import Preview from '../../components/Preview';
+
+// const useStyles = makeStyles(theme => ({}));
 
 const Landing = ({ history }) => {
+  // const classes = useStyles();
+
   return (
-    <>
-      <div className='landing'>
+    <Grid container direction='column' wrap='nowrap'>
+      <Grid item className='landing'>
         <Grid
           container
           direction='column'
@@ -35,8 +41,20 @@ const Landing = ({ history }) => {
             </Button>
           </Grid>
         </Grid>
-      </div>
-    </>
+      </Grid>
+      <Grid item>
+        <Box mt={4}>
+          <Typography variant='h6' align='center' gutterBottom>
+            Hear what’s trending for free in the Storyteller community
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid item>
+        <Box mx={4} mb={6}>
+          <Preview />
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 

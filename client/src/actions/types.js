@@ -16,3 +16,5 @@ export const GET_STORIES = 'GET_STORIES';
 export const GET_STORY = 'GET_STORY';
 export const STORY_ERROR = 'STORY_ERROR';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
+export const TOGGLE_PLAY = 'TOGGLE_PLAY';
+export const SET_PLAYING_STORY = 'SET_PLAYING_STORY';

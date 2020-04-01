@@ -7,6 +7,7 @@ import Routes from './routes';
 import store from './store';
 import Landing from './pages/Landing/Landing';
 import Navbar from './components/Navbar';
+import ProgressBar from './components/ProgressBar/ProgressBar';
 import { loadUser } from './actions/auth';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route exact path='/' component={Landing} />
               <Route component={Routes} />
             </Switch>
+            <ProgressBar />
           </>
         </Router>
       </Provider>

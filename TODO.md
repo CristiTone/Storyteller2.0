@@ -1,6 +1,7 @@
 # Design
 
 - preview story for 30 sec if not authenticated
+- left side panel = search, your library
 
 # Future patch
 
@@ -9,16 +10,22 @@
 - update avatar
 - number of plays
 - comments
+- search by name / author / genre
+- author page
 
 # Tasks
 
 - create landing page (X)
 - signin / signup functionality (X)
-- gallery page
+- samples for landing page
+- move loading higher in redux store
 - play function
 - progress bars
+- gallery page
 - like / unlike functionality
-- profile page
+- your library page (return profile liked)
+- profile page (infos, delete account, return profile without liked)
+- make profile and logout a dropdown
 - error handling and display
 - loading indicator
-- move loading higher in redux store
+- add custom styles
