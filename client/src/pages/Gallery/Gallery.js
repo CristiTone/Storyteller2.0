@@ -1,25 +1,62 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Grid, List, ListItem, ListItemText, Box } from '@material-ui/core';
 import { getStories } from '../../actions/gallery';
+import { togglePlay, setStory } from '../../actions/playing';
 import Player from '../../components/Player';
 
-const Gallery = ({ gallery: { stories, loading }, getStories }) => {
+const Gallery = ({
+  gallery: { stories, loading },
+  playing: { playingStory, isPlaying },
+  togglePlay,
+  setStory,
+  getStories
+}) => {
   useEffect(() => {
     getStories();
   }, [getStories]);
 
-  const [play, togglePlay] = useState(false);
+  const setStoryPlaying = url => {
+    if (url !== playingStory) {
+      setStory(url);
+      togglePlay(true);
+    } else togglePlay(!isPlaying);
+  };
+
   if (loading) return 'Loading...';
   console.log(stories);
   return (
-    <div>
-      <Button variant='contained' onClick={() => togglePlay(!play)}>
-        Play/Pause
-      </Button>
-      <Player url={stories[0].playing_url} play={play} />
-    </div>
+    <Box m={4}>
+      <Grid container spacing={8}>
+        <Grid item xs={2}>
+          <List component='nav' aria-label='secondary mailbox folders'>
+            <ListItem button>
+              <ListItemText primary='Home' />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary='Search' />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary='Your library' />
+            </ListItem>
+          </List>
+        </Grid>
+        <Grid item xs={10}>
+          <Grid container direction='column' spacing={2}>
+            {stories.map(story => (
+              <Grid item key={story._id}>
+                <Player
+                  story={story}
+                  setStoryPlaying={setStoryPlaying}
+                  isPlaying={isPlaying && story.playing_url === playingStory}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
@@ -28,7 +65,10 @@ Gallery.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  gallery: state.gallery
+  gallery: state.gallery,
+  playing: state.playing
 });
 
-export default connect(mapStateToProps, { getStories })(Gallery);
+export default connect(mapStateToProps, { getStories, togglePlay, setStory })(
+  Gallery
+);

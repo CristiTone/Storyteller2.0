@@ -12,20 +12,22 @@
 - comments
 - search by name / author / genre
 - author page
+- add description to stories
 
 # Tasks
 
-- create landing page (X)
-- signin / signup functionality (X)
-- samples for landing page
-- move loading higher in redux store
-- play function
-- progress bars
+- (X) create landing page
+- (X) signin / signup functionality
+- (X) samples for landing page
+- (X) play function
+- (X) progress bar
 - gallery page
+- make gallery page sidepanel links functional
 - like / unlike functionality
 - your library page (return profile liked)
 - profile page (infos, delete account, return profile without liked)
+- cache user
 - make profile and logout a dropdown
 - error handling and display
 - loading indicator
-- add custom styles
+- add custom styles (text, colors, make pages full height, fix position for gallery sidepanel and appbar)

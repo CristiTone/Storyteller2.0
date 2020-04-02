@@ -6,24 +6,25 @@ import {
   CardContent,
   CardMedia,
   IconButton,
-  Typography
+  Typography,
+  Button,
+  Grid,
+  Divider
 } from '@material-ui/core';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import PlayIcon from '@material-ui/icons/PlayCircleFilled';
+import PauseIcon from '@material-ui/icons/PauseCircleFilled';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex'
   },
-  details: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
   content: {
     flex: '1 0 auto'
   },
   cover: {
-    width: 151
+    width: 200
   },
   controls: {
     display: 'flex',
@@ -34,54 +35,85 @@ const useStyles = makeStyles(theme => ({
   playIcon: {
     height: 38,
     width: 38
+  },
+  divider: {
+    margin: theme.spacing(2)
   }
 }));
 
-const Player = ({ url, play }) => {
+const Player = ({
+  story: { author, name, image_url, playing_url, likes, genre },
+  setStoryPlaying,
+  isPlaying
+}) => {
   const classes = useStyles();
 
   return (
     <>
       <Card className={classes.root}>
-        <CardMedia
-          className={classes.cover}
-          image='http://via.placeholder.com/350x150'
-          title='Live from space album cover'
-        />
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography component='h5' variant='h5'>
-              Live From Space
+        <CardMedia className={classes.cover} image={image_url} />
+        <Grid container alignItems='center'>
+          <Grid item xs={4}>
+            <CardContent className={classes.content}>
+              <Typography component='h5' variant='h5'>
+                {name}
+              </Typography>
+              <Typography variant='subtitle1' color='textSecondary'>
+                {author}
+              </Typography>
+              <Typography variant='subtitle2' color='textSecondary'>
+                Genre: {genre}
+              </Typography>
+            </CardContent>
+            <div className={classes.controls}>
+              <Button
+                variant='outlined'
+                color='primary'
+                endIcon={<FavoriteBorderIcon />}
+              >
+                {likes.length}
+              </Button>
+              <IconButton
+                color='primary'
+                onClick={() => setStoryPlaying(playing_url)}
+              >
+                {isPlaying ? (
+                  <PauseIcon className={classes.playIcon} />
+                ) : (
+                  <PlayIcon className={classes.playIcon} />
+                )}
+              </IconButton>
+            </div>
+          </Grid>
+          <Divider
+            orientation='vertical'
+            flexItem
+            className={classes.divider}
+          />
+          <Grid item xs={7}>
+            <Typography variant='caption' align='center'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+              sagittis tempor eros, et consequat urna placerat sit amet. Nullam
+              maximus, eros et varius vehicula, turpis nunc porttitor quam, et
+              luctus dolor ante a diam. Curabitur interdum sit amet arcu sit
+              amet congue. Etiam quam dui, mattis sit amet mi quis, interdum
+              lobortis tortor. Duis ultrices lacus iaculis placerat imperdiet.
+              Aliquam erat volutpat. Nulla scelerisque ligula justo, posuere
+              posuere urna gravida quis. Quisque malesuada dapibus tortor, ut
+              pharetra ex suscipit et. Ut ante nunc, convallis eget vestibulum
+              sit amet, bibendum vitae velit.
             </Typography>
-            <Typography variant='subtitle1' color='textSecondary'>
-              Mac Miller
-            </Typography>
-          </CardContent>
-          <div className={classes.controls}>
-            <IconButton style={{ color: 'pink' }}>
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label='play/pause'>
-              <PlayArrowIcon className={classes.playIcon} />
-            </IconButton>
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       </Card>
-      {/* 
-        Add description for the story
-      */}
-      {/* <MediaPlayer
-        url={url}
-        playing={play}
-        config={{ file: { forceAudio: true } }}
-      /> */}
     </>
   );
 };
 
 Player.propTypes = {
-  url: PropTypes.string.isRequired,
-  play: PropTypes.bool.isRequired
+  story: PropTypes.object.isRequired,
+  setStoryPlaying: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 export default Player;
