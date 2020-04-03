@@ -1,9 +1,5 @@
 import * as galleryClient from '../apiClients/galleryClient';
-import {
-  GET_STORIES,
-  // UPDATE_LIKES,
-  STORY_ERROR
-} from './types';
+import { GET_STORIES, UPDATE_LIKES, STORY_ERROR } from './types';
 
 // Get posts
 export const getStories = () => async dispatch => {
@@ -17,41 +13,41 @@ export const getStories = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: STORY_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.statusText, status: err.response.status }
     });
   }
 };
 
 // Add like
-// export const addLike = id => async dispatch => {
-//   try {
-//     const res = await axios.put(`/api/posts/like/${id}`);
+export const addLike = id => async dispatch => {
+  try {
+    const res = await galleryClient.likeStory(id);
 
-//     dispatch({
-//       type: UPDATE_LIKES,
-//       payload: { id, likes: res.data }
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: STORY_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res }
+    });
+  } catch (err) {
+    dispatch({
+      type: STORY_ERROR,
+      payload: { msg: err.statusText, status: err.status }
+    });
+  }
+};
 
-// // Remove like
-// export const removeLike = id => async dispatch => {
-//   try {
-//     const res = await axios.put(`/api/posts/unlike/${id}`);
+// Remove like
+export const removeLike = id => async dispatch => {
+  try {
+    const res = await galleryClient.unlikeStory(id);
 
-//     dispatch({
-//       type: UPDATE_LIKES,
-//       payload: { id, likes: res.data }
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: STORY_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res }
+    });
+  } catch (err) {
+    dispatch({
+      type: STORY_ERROR,
+      payload: { msg: err.statusText, status: err.status }
+    });
+  }
+};

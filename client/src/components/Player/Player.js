@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -14,7 +15,8 @@ import {
 import PlayIcon from '@material-ui/icons/PlayCircleFilled';
 import PauseIcon from '@material-ui/icons/PauseCircleFilled';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { addLike, removeLike } from '../../actions/gallery';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,8 +35,8 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(1)
   },
   playIcon: {
-    height: 38,
-    width: 38
+    height: 45,
+    width: 45
   },
   divider: {
     margin: theme.spacing(2)
@@ -42,11 +44,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Player = ({
-  story: { author, name, image_url, playing_url, likes, genre },
+  story: { _id, author, name, image_url, playing_url, likes, genre },
   setStoryPlaying,
-  isPlaying
+  isPlaying,
+  userId,
+  addLike,
+  removeLike
 }) => {
   const classes = useStyles();
+  let storyLiked = likes.some(like => like.user === userId);
+
+  const toggleLike = () => {
+    if (!storyLiked) addLike(_id);
+    else removeLike(_id);
+  };
 
   return (
     <>
@@ -67,9 +78,10 @@ const Player = ({
             </CardContent>
             <div className={classes.controls}>
               <Button
+                onClick={toggleLike}
                 variant='outlined'
                 color='primary'
-                endIcon={<FavoriteBorderIcon />}
+                endIcon={storyLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               >
                 {likes.length}
               </Button>
@@ -116,4 +128,8 @@ Player.propTypes = {
   isPlaying: PropTypes.bool.isRequired
 };
 
-export default Player;
+const mapStateToProps = state => ({
+  userId: state.auth.user._id
+});
+
+export default connect(mapStateToProps, { addLike, removeLike })(Player);

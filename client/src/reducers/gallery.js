@@ -1,7 +1,4 @@
-import {
-  GET_STORIES
-  // UPDATE_LIKES,
-} from '../actions/types';
+import { GET_STORIES, UPDATE_LIKES } from '../actions/types';
 
 const initialState = {
   stories: [],
@@ -18,14 +15,14 @@ export default function(state = initialState, action) {
         stories: payload,
         loading: false
       };
-    // case UPDATE_LIKES:
-    //   return {
-    //     ...state,
-    //     posts: state.posts.map(post =>
-    //       post._id === payload.id ? { ...post, likes: payload.likes } : post
-    //     ),
-    //     loading: false
-    //   };
+    case UPDATE_LIKES:
+      return {
+        ...state,
+        stories: state.stories.map(story =>
+          story._id === payload.id ? { ...story, likes: payload.likes } : story
+        ),
+        loading: false
+      };
     default:
       return state;
   }

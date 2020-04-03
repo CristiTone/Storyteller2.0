@@ -1,16 +1,14 @@
-# Design
-
--
-
 # Future patch
 
 - story page
-- details and text when clicking on a story (only part of text with expand option. no expand option if not authenticated)
-- update avatar
+- search by name / author / genre
+- custom progress bar
+- details and text when clicking on a story (? only part of text with expand option. no expand option if not authenticated)
+- author page
+- grid and list view for your library page
 - number of plays
 - comments
-- search by name / author / genre
-- author page
+- update avatar
 - add description to stories
 
 # Tasks
@@ -21,11 +19,11 @@
 - (X) play function
 - (X) progress bar
 - (X) gallery page
-- make gallery page sidepanel links functional
+- (X) make gallery page sidepanel links functional
 - like / unlike functionality
 - your library page (return profile liked)
 - profile page (infos, delete account, return profile without liked)
-- cache user
+- remove state from gallery and use url as truth source
 - cache user / profile / stories
 - make profile and logout a dropdown
 - error handling and display
