@@ -11,6 +11,8 @@ const Routes = () => {
       <Route path='/sign-up' component={SignUp} />
       <Route path='/sign-in' component={SignIn} />
       <PrivateRoute exact path='/gallery' component={Gallery} />
+      <PrivateRoute exact path='/search' component={Gallery} />
+      <PrivateRoute exact path='/your-library' component={Gallery} />
     </Switch>
   );
 };

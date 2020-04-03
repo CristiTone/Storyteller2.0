@@ -1,7 +1,6 @@
 # Design
 
-- preview story for 30 sec if not authenticated
-- left side panel = search, your library
+-
 
 # Future patch
 
@@ -21,13 +20,17 @@
 - (X) samples for landing page
 - (X) play function
 - (X) progress bar
-- gallery page
+- (X) gallery page
 - make gallery page sidepanel links functional
 - like / unlike functionality
 - your library page (return profile liked)
 - profile page (infos, delete account, return profile without liked)
 - cache user
+- cache user / profile / stories
 - make profile and logout a dropdown
 - error handling and display
 - loading indicator
+- add title for pages
 - add custom styles (text, colors, make pages full height, fix position for gallery sidepanel and appbar)
+
+https://discord.gg/srywCR
