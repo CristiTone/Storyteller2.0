@@ -14,7 +14,7 @@ const Gallery = ({
   togglePlay,
   setStory,
   getStories,
-  history
+  history,
 }) => {
   useEffect(() => {
     getStories();
@@ -22,7 +22,7 @@ const Gallery = ({
 
   const [tab, setTab] = useState('gallery');
 
-  const setStoryPlaying = url => {
+  const setStoryPlaying = (url) => {
     if (url !== playingStory) {
       setStory(url);
       togglePlay(true);
@@ -49,7 +49,7 @@ const Gallery = ({
         <Grid item xs={10}>
           {tab === 'gallery' && (
             <Grid container direction='column' spacing={2}>
-              {stories.map(story => (
+              {stories.map((story) => (
                 <Grid item key={story._id}>
                   <Player
                     story={story}
@@ -61,7 +61,13 @@ const Gallery = ({
             </Grid>
           )}
           {tab === 'search' && <Search />}
-          {tab === 'your-library' && <YourLibrary />}
+          {tab === 'your-library' && (
+            <YourLibrary
+              setStoryPlaying={setStoryPlaying}
+              isPlaying={isPlaying}
+              playingStory={playingStory}
+            />
+          )}
         </Grid>
       </Grid>
     </Box>
@@ -69,12 +75,12 @@ const Gallery = ({
 };
 
 Gallery.propTypes = {
-  getStories: PropTypes.func.isRequired
+  getStories: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   gallery: state.gallery,
-  playing: state.playing
+  playing: state.playing,
 });
 
 export default connect(mapStateToProps, { getStories, togglePlay, setStory })(

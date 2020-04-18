@@ -18,3 +18,5 @@ export const STORY_ERROR = 'STORY_ERROR';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const TOGGLE_PLAY = 'TOGGLE_PLAY';
 export const SET_PLAYING_STORY = 'SET_PLAYING_STORY';
+export const GET_LIBRARY = 'GET_LIBRARY';
+export const LIBRARY_ERROR = 'LIBRARY_ERROR';

@@ -10,7 +10,7 @@ import {
   Typography,
   Button,
   Grid,
-  Divider
+  Divider,
 } from '@material-ui/core';
 import PlayIcon from '@material-ui/icons/PlayCircleFilled';
 import PauseIcon from '@material-ui/icons/PauseCircleFilled';
@@ -18,29 +18,29 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { addLike, removeLike } from '../../actions/gallery';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   content: {
-    flex: '1 0 auto'
+    flex: '1 0 auto',
   },
   cover: {
-    width: 200
+    width: 200,
   },
   controls: {
     display: 'flex',
     alignItems: 'center',
     paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
   },
   playIcon: {
     height: 45,
-    width: 45
+    width: 45,
   },
   divider: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }));
 
 const Player = ({
@@ -49,10 +49,10 @@ const Player = ({
   isPlaying,
   userId,
   addLike,
-  removeLike
+  removeLike,
 }) => {
   const classes = useStyles();
-  let storyLiked = likes.some(like => like.user === userId);
+  let storyLiked = likes.some((like) => like.user === userId);
 
   const toggleLike = () => {
     if (!storyLiked) addLike(_id);
@@ -125,11 +125,11 @@ const Player = ({
 Player.propTypes = {
   story: PropTypes.object.isRequired,
   setStoryPlaying: PropTypes.func.isRequired,
-  isPlaying: PropTypes.bool.isRequired
+  isPlaying: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
-  userId: state.auth.user._id
+const mapStateToProps = (state) => ({
+  userId: state.auth.user._id,
 });
 
 export default connect(mapStateToProps, { addLike, removeLike })(Player);
