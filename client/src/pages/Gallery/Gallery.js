@@ -21,7 +21,7 @@ const Gallery = ({
     promiseFn: getStories,
   });
 
-  const [tab, setTab] = useState('gallery');
+  const [tab, setTab] = useState(history.location.pathname);
 
   const setStoryPlaying = (url) => {
     if (url !== playingStory) {
@@ -32,7 +32,7 @@ const Gallery = ({
 
   const handleChange = (e, newTab) => {
     setTab(newTab);
-    history.push(`/${newTab}`);
+    history.push(newTab);
   };
 
   if (isPending) return 'Loading...';
@@ -42,13 +42,13 @@ const Gallery = ({
       <Grid container spacing={8}>
         <Grid item xs={2}>
           <Tabs value={tab} onChange={handleChange} orientation='vertical'>
-            <Tab value='gallery' label='Gallery' />
-            <Tab value='search' label='Search' />
-            <Tab value='your-library' label='Your Library' />
+            <Tab value='/gallery' label='Gallery' />
+            <Tab value='/search' label='Search' />
+            <Tab value='/your-library' label='Your Library' />
           </Tabs>
         </Grid>
         <Grid item xs={10}>
-          {tab === 'gallery' && (
+          {tab === '/gallery' && (
             <Grid container direction='column' spacing={2}>
               {stories.map((story) => (
                 <Grid item key={story._id}>
@@ -61,8 +61,8 @@ const Gallery = ({
               ))}
             </Grid>
           )}
-          {tab === 'search' && <Search />}
-          {tab === 'your-library' && (
+          {tab === '/search' && <Search />}
+          {tab === '/your-library' && (
             <YourLibrary
               setStoryPlaying={setStoryPlaying}
               isPlaying={isPlaying}

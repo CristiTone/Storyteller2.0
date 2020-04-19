@@ -10,13 +10,13 @@
 - (X) like / unlike functionality
 - (X) your library page (return profile liked)
 - (X) profile page (infos, delete account, return profile without liked)
-- remove useEffect api calls and use react-async
-- remove loading from state and use isPending from react-async
+- (X) remove useEffect api calls and use react-async
+- (X) remove loading from state and use isPending from react-async
 - remove state from gallery and use url as truth source
-- cache user / profile / stories
-- when toolbar is rendered make profile request for name and avatar
-- make profile and logout a dropdown
-- make emblem a gallery / landing link
+- (X) cache user / profile / stories
+- (X) when toolbar is rendered make profile request for name and avatar
+- (?) make profile and logout a dropdown
+- (X) make emblem a gallery / landing link
 - error / loading / like / unlike / success / delete account / sign in / sign up handling and display
   (https://material-ui.com/components/snackbars/)
 - loading indicator
