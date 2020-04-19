@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { useAsync } from 'react-async';
 import { Grid, Typography, IconButton, TextField } from '@material-ui/core';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import ViewListIcon from '@material-ui/icons/ViewList';
@@ -10,16 +11,15 @@ import { getLibrary } from '../../actions/profile';
 const YourLibrary = ({
   getLibrary,
   library,
-  loading,
   setStoryPlaying,
   isPlaying,
   playingStory,
 }) => {
-  useEffect(() => {
-    getLibrary();
-  }, [getLibrary]);
+  const { isPending } = useAsync({
+    promiseFn: getLibrary,
+  });
 
-  if (loading || !library) return 'Loading...';
+  if (isPending) return 'Loading...';
   return (
     <>
       <Grid container justify='space-between' alignItems='center' spacing={4}>
@@ -65,7 +65,6 @@ const YourLibrary = ({
 YourLibrary.propTypes = {
   getLibrary: PropTypes.func,
   library: PropTypes.array,
-  loading: PropTypes.bool,
   setStoryPlaying: PropTypes.func,
   isPlaying: PropTypes.bool,
   playingStory: PropTypes.string,
@@ -81,7 +80,7 @@ const mapStateToProps = (state) => {
     likedstories.find((liked) => story._id === liked.story)
   );
 
-  return { library, loading: state.profile.loading };
+  return { library };
 };
 
 export default connect(mapStateToProps, { getLibrary })(YourLibrary);

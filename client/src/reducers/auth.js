@@ -6,17 +6,16 @@ import {
   LOGIN_SUCCESS,
   //LOGIN_FAIL,
   LOGOUT,
-  ACCOUNT_DELETED
+  ACCOUNT_DELETED,
 } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('_token_'),
-  isAuthenticated: false,
-  loading: true,
-  user: null
+  isAuthenticated: null,
+  user: null,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -24,38 +23,33 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: true,
-        loading: false,
-        user: payload
+        user: payload,
       };
     case REGISTER_SUCCESS:
       return {
         ...state,
         ...payload,
         isAuthenticated: true,
-        loading: false
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         ...payload,
         isAuthenticated: true,
-        loading: false
       };
     case ACCOUNT_DELETED:
       return {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false,
-        user: null
+        user: null,
       };
     case LOGOUT:
       return {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false,
-        user: null
+        user: null,
       };
     default:
       return state;

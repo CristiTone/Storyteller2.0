@@ -191,7 +191,12 @@ const Profile = ({ name, email, avatar, deleteProfile }) => {
   );
 };
 
-Profile.propTypes = {};
+Profile.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+  avatar: PropTypes.string,
+  deleteProfile: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   const { name, email } = state.auth.user;

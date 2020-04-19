@@ -2,24 +2,22 @@ import { TOGGLE_PLAY, SET_PLAYING_STORY } from '../actions/types';
 
 const initialState = {
   isPlaying: false,
-  playingStory: null
+  playingStory: null,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
-
-  // TODO: add loading if necessary
 
   switch (type) {
     case TOGGLE_PLAY:
       return {
         ...state,
-        isPlaying: payload
+        isPlaying: payload,
       };
     case SET_PLAYING_STORY:
       return {
         ...state,
-        playingStory: payload
+        playingStory: payload,
       };
     default:
       return state;

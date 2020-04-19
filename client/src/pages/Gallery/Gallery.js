@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useAsync } from 'react-async';
 import { Grid, Box, Tabs, Tab } from '@material-ui/core';
 import { getStories } from '../../actions/gallery';
 import { togglePlay, setStory } from '../../actions/playing';
@@ -9,16 +10,16 @@ import Search from './Search';
 import YourLibrary from './YourLibrary';
 
 const Gallery = ({
-  gallery: { stories, loading },
+  gallery: { stories },
   playing: { playingStory, isPlaying },
   togglePlay,
   setStory,
   getStories,
   history,
 }) => {
-  useEffect(() => {
-    getStories();
-  }, [getStories]);
+  const { isPending } = useAsync({
+    promiseFn: getStories,
+  });
 
   const [tab, setTab] = useState('gallery');
 
@@ -34,7 +35,7 @@ const Gallery = ({
     history.push(`/${newTab}`);
   };
 
-  if (loading) return 'Loading...';
+  if (isPending) return 'Loading...';
   console.log(stories);
   return (
     <Box m={4}>

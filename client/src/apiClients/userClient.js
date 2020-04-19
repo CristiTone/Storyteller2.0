@@ -1,18 +1,24 @@
 import client from './client';
+let cache = null;
 
 function getUser() {
-  return client('auth');
+  if (cache) return Promise.resolve(cache);
+
+  const result = client('auth');
+  result.then((account) => (cache = account));
+
+  return result;
 }
 
 function registerUser(account) {
   return client('user', {
-    body: account
+    body: account,
   });
 }
 
 function loginUser(account) {
   return client('auth', {
-    body: account
+    body: account,
   });
 }
 

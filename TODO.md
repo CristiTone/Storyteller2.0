@@ -9,7 +9,7 @@
 - (X) make gallery page sidepanel links functional
 - (X) like / unlike functionality
 - (X) your library page (return profile liked)
-- profile page (infos, delete account, return profile without liked)
+- (X) profile page (infos, delete account, return profile without liked)
 - remove useEffect api calls and use react-async
 - remove loading from state and use isPending from react-async
 - remove state from gallery and use url as truth source

@@ -1,7 +1,13 @@
 import client from './client';
+let cache = null;
 
 function getStories() {
-  return client('gallery');
+  if (cache) return Promise.resolve(cache);
+
+  const result = client('gallery');
+  result.then((stories) => (cache = stories));
+
+  return result;
 }
 
 function likeStory(storyId) {
