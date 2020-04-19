@@ -10,7 +10,7 @@ import {
   Button,
   Box,
   Grid,
-  Container
+  Container,
 } from '@material-ui/core';
 
 const Signup = ({ setAlert, register, isAuthenticated }) => {
@@ -18,15 +18,15 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
     name: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
   });
 
   const { name, email, password, password2 } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
@@ -52,8 +52,8 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
         </Typography>
       </Box>
 
-      <form onSubmit={e => onSubmit(e)}>
-        <Grid container spacing={2} alignItems='flex-start' justify='center'>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <Grid container spacing={2} alignItems='center' justify='center'>
           <Grid item xs={12} sm={3}>
             <Typography>Name</Typography>
           </Grid>
@@ -64,7 +64,7 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
               placeholder='Name'
               name='name'
               value={name}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </Grid>
@@ -79,7 +79,7 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
               placeholder='Email Address'
               name='email'
               value={email}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </Grid>
@@ -94,7 +94,7 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
               placeholder='Password'
               name='password'
               value={password}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </Grid>
@@ -109,7 +109,7 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
               placeholder='Confirm Password'
               name='password2'
               value={password2}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </Grid>
@@ -136,11 +136,11 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
 Signup.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { setAlert, register })(Signup);

@@ -8,14 +8,17 @@
 - (X) gallery page
 - (X) make gallery page sidepanel links functional
 - (X) like / unlike functionality
-- your library page (return profile liked)
+- (X) your library page (return profile liked)
 - profile page (infos, delete account, return profile without liked)
 - remove useEffect api calls and use react-async
 - remove loading from state and use isPending from react-async
 - remove state from gallery and use url as truth source
 - cache user / profile / stories
+- when toolbar is rendered make profile request for name and avatar
 - make profile and logout a dropdown
-- error / loading handling and display
+- make emblem a gallery / landing link
+- error / loading / like / unlike / success / delete account / sign in / sign up handling and display
+  (https://material-ui.com/components/snackbars/)
 - loading indicator
 - add title for pages
 - add custom styles (text, colors, make pages full height, fix position for gallery sidepanel and appbar)
@@ -24,8 +27,9 @@
 
 - story page
 - search by name / author / genre
-- filter by genre
+- filter by
 - custom progress bar
+- make sign in, sign up and profile into dialogs?
 - details and text when clicking on a story (? only part of text with expand option. no expand option if not authenticated)
 - author page
 - grid and list view for your library page
@@ -33,8 +37,14 @@
 - comments
 - update avatar
 - add description to stories
+- add first name and last name
+- update email
+- update password
+- forgot password
+- remove likes from deleted accounts
 
 # Bugs
 
-- when starting the app and user is authenticated Landing page will be shown, instead of gallery
-- when unlikeing a story in Your Library the story is not removed
+- starting the app and user is authenticated Landing page will be shown, instead of gallery
+- unlikeing a story in Your Library the story is not removed
+- getting redirected to /gallery after refresh from any page

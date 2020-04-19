@@ -4,6 +4,7 @@ import PrivateRoute from './PrivateRoute';
 import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
 import Gallery from '../pages/Gallery';
+import Profile from '../pages/Profile';
 
 const Routes = () => {
   return (
@@ -13,6 +14,7 @@ const Routes = () => {
       <PrivateRoute exact path='/gallery' component={Gallery} />
       <PrivateRoute exact path='/search' component={Gallery} />
       <PrivateRoute exact path='/your-library' component={Gallery} />
+      <PrivateRoute exact path='/profile' component={Profile} />
     </Switch>
   );
 };

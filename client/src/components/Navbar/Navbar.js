@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { AppBar, Toolbar, Icon, Typography, Button } from '@material-ui/core';
@@ -6,25 +6,30 @@ import { makeStyles } from '@material-ui/core/styles';
 import { LocalLibrary } from '@material-ui/icons';
 import { withRouter } from 'react-router-dom';
 import { logout } from '../../actions/auth';
+import { getProfile } from '../../actions/profile';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   navigation: {
     color: 'inherit',
-    textDecoration: 'none'
-  }
+    textDecoration: 'none',
+  },
 }));
 
-const Navbar = ({ history, auth: { isAuthenticated }, logout }) => {
+const Navbar = ({ history, auth: { isAuthenticated }, getProfile, logout }) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    if (isAuthenticated) getProfile();
+  }, [getProfile, isAuthenticated]);
 
   return (
     <div className={classes.root}>
@@ -85,11 +90,13 @@ const Navbar = ({ history, auth: { isAuthenticated }, logout }) => {
 Navbar.propTypes = {
   history: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool,
-  logout: PropTypes.func
+  logout: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default withRouter(connect(mapStateToProps, { logout })(Navbar));
+export default withRouter(
+  connect(mapStateToProps, { logout, getProfile })(Navbar)
+);

@@ -4,4 +4,12 @@ function getLibrary() {
   return client('profile/library');
 }
 
-export { getLibrary };
+function getProfile() {
+  return client('profile');
+}
+
+function deleteProfile() {
+  return client('profile', { method: 'DELETE' });
+}
+
+export { getLibrary, getProfile, deleteProfile };

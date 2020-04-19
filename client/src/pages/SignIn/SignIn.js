@@ -9,21 +9,21 @@ import {
   Typography,
   Grid,
   TextField,
-  Button
+  Button,
 } from '@material-ui/core';
 
 const SignIn = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
   const { email, password } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     login({ email, password });
   };
@@ -44,8 +44,8 @@ const SignIn = ({ login, isAuthenticated }) => {
           Sign Into Your Account
         </Typography>
       </Box>
-      <form onSubmit={e => onSubmit(e)}>
-        <Grid container spacing={2} alignItems='flex-start' justify='center'>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <Grid container spacing={2} alignItems='center' justify='center'>
           <Grid item xs={12} sm={3}>
             <Typography>Email</Typography>
           </Grid>
@@ -56,7 +56,7 @@ const SignIn = ({ login, isAuthenticated }) => {
               placeholder='Email Address'
               name='email'
               value={email}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </Grid>
@@ -71,7 +71,7 @@ const SignIn = ({ login, isAuthenticated }) => {
               placeholder='Password'
               name='password'
               value={password}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </Grid>
@@ -97,11 +97,11 @@ const SignIn = ({ login, isAuthenticated }) => {
 
 SignIn.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { login })(SignIn);
