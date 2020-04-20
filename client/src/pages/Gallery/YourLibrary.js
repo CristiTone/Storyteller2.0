@@ -7,6 +7,7 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import PropTypes from 'prop-types';
 import Player from '../../components/Player';
 import { getLibrary } from '../../actions/profile';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 const YourLibrary = ({
   getLibrary,
@@ -19,7 +20,6 @@ const YourLibrary = ({
     promiseFn: getLibrary,
   });
 
-  if (isPending) return 'Loading...';
   return (
     <>
       <Grid container justify='space-between' alignItems='center' spacing={4}>
@@ -47,17 +47,22 @@ const YourLibrary = ({
           </Grid>
         </Grid>
       </Grid>
-      <Grid container direction='column' spacing={2}>
-        {library.map((story) => (
-          <Grid item key={story._id}>
-            <Player
-              story={story}
-              setStoryPlaying={setStoryPlaying}
-              isPlaying={isPlaying && story.playing_url === playingStory}
-            />
+      {isPending && <LoadingIndicator />}
+      {!isPending && (
+        <>
+          <Grid container direction='column' spacing={2}>
+            {library.map((story) => (
+              <Grid item key={story._id}>
+                <Player
+                  story={story}
+                  setStoryPlaying={setStoryPlaying}
+                  isPlaying={isPlaying && story.playing_url === playingStory}
+                />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+        </>
+      )}
     </>
   );
 };

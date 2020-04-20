@@ -6,6 +6,7 @@ import { Grid, Box, Tabs, Tab } from '@material-ui/core';
 import { getStories } from '../../actions/gallery';
 import { togglePlay, setStory } from '../../actions/playing';
 import Player from '../../components/Player';
+import LoadingIndicator from '../../components/LoadingIndicator';
 import Search from './Search';
 import YourLibrary from './YourLibrary';
 
@@ -35,7 +36,6 @@ const Gallery = ({
     history.push(newTab);
   };
 
-  if (isPending) return 'Loading...';
   console.log(stories);
   return (
     <Box m={4}>
@@ -48,26 +48,33 @@ const Gallery = ({
           </Tabs>
         </Grid>
         <Grid item xs={10}>
-          {tab === '/gallery' && (
-            <Grid container direction='column' spacing={2}>
-              {stories.map((story) => (
-                <Grid item key={story._id}>
-                  <Player
-                    story={story}
-                    setStoryPlaying={setStoryPlaying}
-                    isPlaying={isPlaying && story.playing_url === playingStory}
-                  />
+          {isPending && <LoadingIndicator />}
+          {!isPending && (
+            <>
+              {tab === '/gallery' && (
+                <Grid container direction='column' spacing={2}>
+                  {stories.map((story) => (
+                    <Grid item key={story._id}>
+                      <Player
+                        story={story}
+                        setStoryPlaying={setStoryPlaying}
+                        isPlaying={
+                          isPlaying && story.playing_url === playingStory
+                        }
+                      />
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
-          )}
-          {tab === '/search' && <Search />}
-          {tab === '/your-library' && (
-            <YourLibrary
-              setStoryPlaying={setStoryPlaying}
-              isPlaying={isPlaying}
-              playingStory={playingStory}
-            />
+              )}
+              {tab === '/search' && <Search />}
+              {tab === '/your-library' && (
+                <YourLibrary
+                  setStoryPlaying={setStoryPlaying}
+                  isPlaying={isPlaying}
+                  playingStory={playingStory}
+                />
+              )}
+            </>
           )}
         </Grid>
       </Grid>

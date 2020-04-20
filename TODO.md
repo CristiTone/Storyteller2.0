@@ -16,7 +16,7 @@
 - (X) when toolbar is rendered make profile request for name and avatar
 - (?) make profile and logout a dropdown
 - (X) make emblem a gallery / landing link
-- error / loading / like / unlike / success / delete account handling and display
+- (X) error / loading / like / unlike / success / delete account handling and display
 - loading indicator
 - add title for pages
 - add custom styles (text, colors, make pages full height, fix position for gallery sidepanel and appbar)
