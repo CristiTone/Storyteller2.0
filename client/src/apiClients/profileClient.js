@@ -1,13 +1,7 @@
 import client from './client';
-let cache = null;
 
 function getLibrary() {
-  if (cache) return Promise.resolve(cache);
-
-  const result = client('profile/library');
-  result.then((stories) => (cache = stories));
-
-  return result;
+  return client('profile/library');
 }
 
 function getProfile() {

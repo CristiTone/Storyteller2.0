@@ -41,7 +41,7 @@ const Navbar = ({ history, auth: { isAuthenticated }, getProfile, logout }) => {
               variant='text'
               color='inherit'
               className={classes.menuButton}
-              onClick={() => history.push('/gallery')}
+              onClick={() => history.push('/')}
             >
               <img src={logo} alt='' className={classes.logo} />
               <Typography variant='h6' className={classes.title}>

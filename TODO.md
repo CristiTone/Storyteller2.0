@@ -12,13 +12,11 @@
 - (X) profile page (infos, delete account, return profile without liked)
 - (X) remove useEffect api calls and use react-async
 - (X) remove loading from state and use isPending from react-async
-- remove state from gallery and use url as truth source
 - (X) cache user / profile / stories
 - (X) when toolbar is rendered make profile request for name and avatar
 - (?) make profile and logout a dropdown
 - (X) make emblem a gallery / landing link
-- error / loading / like / unlike / success / delete account / sign in / sign up handling and display
-  (https://material-ui.com/components/snackbars/)
+- error / loading / like / unlike / success / delete account handling and display
 - loading indicator
 - add title for pages
 - add custom styles (text, colors, make pages full height, fix position for gallery sidepanel and appbar)
@@ -48,3 +46,4 @@
 - starting the app and user is authenticated Landing page will be shown, instead of gallery
 - unlikeing a story in Your Library the story is not removed
 - getting redirected to /gallery after refresh from any page
+- autoHideDuration from Alert not being reset when a new alert is rendered

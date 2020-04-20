@@ -6,6 +6,7 @@ import {
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
 } from './types';
+import { setAlert } from './alert';
 
 // Get Profile Library
 export const getLibrary = () => async (dispatch) => {
@@ -49,6 +50,7 @@ export const deleteProfile = () => async (dispatch) => {
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
+      dispatch(setAlert('Account deleted', 'success'));
     } catch (err) {
       dispatch({
         type: PROFILE_ERROR,

@@ -55,8 +55,11 @@ const Player = ({
   let storyLiked = likes.some((like) => like.user === userId);
 
   const toggleLike = () => {
-    if (!storyLiked) addLike(_id);
-    else removeLike(_id);
+    if (!storyLiked) {
+      addLike(_id);
+    } else {
+      removeLike(_id);
+    }
   };
 
   return (
@@ -128,8 +131,10 @@ Player.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  userId: state.auth.user._id,
-});
+const mapStateToProps = (state) => {
+  const user = state.auth.user;
+  if (user) return { userId: user._id };
+  return {};
+};
 
 export default connect(mapStateToProps, { addLike, removeLike })(Player);

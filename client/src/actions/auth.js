@@ -36,6 +36,7 @@ export const register = (account) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: res,
     });
+    dispatch(setAlert('Registered succesfully', 'success'));
   } catch (err) {
     const errors = err.errors;
 
@@ -58,6 +59,7 @@ export const login = (account) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res,
     });
+    dispatch(setAlert('Logged in succesfully', 'success'));
 
     dispatch(loadUser());
   } catch (err) {
