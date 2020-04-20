@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import DocumentTitle from 'react-document-title';
 import PrivateRoute from './PrivateRoute';
 import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
@@ -10,14 +11,30 @@ import Alert from '../components/Alert';
 const Routes = () => {
   return (
     <>
+      <DocumentTitle title='Storyteller' />
       <Alert />
       <Switch>
         <Route path='/sign-up' component={SignUp} />
         <Route path='/sign-in' component={SignIn} />
-        <PrivateRoute exact path='/gallery' component={Gallery} />
-        <PrivateRoute exact path='/search' component={Gallery} />
-        <PrivateRoute exact path='/your-library' component={Gallery} />
-        <PrivateRoute exact path='/profile' component={Profile} />
+        <PrivateRoute
+          exact
+          title='Gallery'
+          path='/gallery'
+          component={Gallery}
+        />
+        <PrivateRoute exact title='Search' path='/search' component={Gallery} />
+        <PrivateRoute
+          exact
+          title='Your Library'
+          path='/your-library'
+          component={Gallery}
+        />
+        <PrivateRoute
+          exact
+          title='Profile'
+          path='/profile'
+          component={Profile}
+        />
       </Switch>
     </>
   );

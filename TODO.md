@@ -17,7 +17,7 @@
 - (?) make profile and logout a dropdown
 - (X) make emblem a gallery / landing link
 - (X) error / loading / like / unlike / success / delete account handling and display
-- loading indicator
+- (X) loading indicator
 - add title for pages
 - add custom styles (text, colors, make pages full height, fix position for gallery sidepanel and appbar)
 
@@ -47,3 +47,4 @@
 - unlikeing a story in Your Library the story is not removed
 - getting redirected to /gallery after refresh from any page
 - autoHideDuration from Alert not being reset when a new alert is rendered
+- no error handling for signin signup
