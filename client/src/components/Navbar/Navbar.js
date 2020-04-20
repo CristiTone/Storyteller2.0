@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    padding: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
   },
   navigation: {
     color: 'inherit',
@@ -33,7 +33,7 @@ const Navbar = ({ history, auth: { isAuthenticated }, getProfile, logout }) => {
   }, [getProfile, isAuthenticated]);
 
   return (
-    <AppBar position='static'>
+    <AppBar position='sticky'>
       <Toolbar>
         <Grid container justify='space-between' alignItems='center'>
           <Grid item>

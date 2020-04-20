@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    width: 200,
+    width: 250,
+    height: 200,
   },
   controls: {
     display: 'flex',
@@ -66,8 +67,8 @@ const Player = ({
     <>
       <Card className={classes.root}>
         <CardMedia className={classes.cover} image={image_url} />
-        <Grid container alignItems='center'>
-          <Grid item xs={4}>
+        <Grid container alignItems='center' justify='flex-start'>
+          <Grid item xs={3}>
             <CardContent className={classes.content}>
               <Typography component='h5' variant='h5'>
                 {name}
@@ -105,7 +106,7 @@ const Player = ({
             flexItem
             className={classes.divider}
           />
-          <Grid item xs={7}>
+          <Grid item xs={8}>
             <Typography variant='caption' align='center'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
               sagittis tempor eros, et consequat urna placerat sit amet. Nullam

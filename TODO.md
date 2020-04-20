@@ -18,8 +18,8 @@
 - (X) make emblem a gallery / landing link
 - (X) error / loading / like / unlike / success / delete account handling and display
 - (X) loading indicator
-- add title for pages
-- add custom styles (text, colors, make pages full height, fix position for gallery sidepanel and appbar)
+- (X) add title for pages
+- (X) add custom styles (!won't fix = make pages full height, fix position for gallery sidepanel and appbar, story avatar square)
 
 # Future patch
 
@@ -43,8 +43,9 @@
 
 # Bugs
 
+- no error handling for signin signup
+- catch unwanted get to /auth when not logged in
 - starting the app and user is authenticated Landing page will be shown, instead of gallery
 - unlikeing a story in Your Library the story is not removed
 - getting redirected to /gallery after refresh from any page
 - autoHideDuration from Alert not being reset when a new alert is rendered
-- no error handling for signin signup

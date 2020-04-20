@@ -38,10 +38,15 @@ const Gallery = ({
 
   console.log(stories);
   return (
-    <Box m={4}>
-      <Grid container spacing={8}>
+    <Box mt={2} mx={2}>
+      <Grid container spacing={4}>
         <Grid item xs={2}>
-          <Tabs value={tab} onChange={handleChange} orientation='vertical'>
+          <Tabs
+            value={tab}
+            onChange={handleChange}
+            orientation='vertical'
+            style={{ position: 'sticky', top: 80 }}
+          >
             <Tab value='/gallery' label='Gallery' />
             <Tab value='/search' label='Search' />
             <Tab value='/your-library' label='Your Library' />
